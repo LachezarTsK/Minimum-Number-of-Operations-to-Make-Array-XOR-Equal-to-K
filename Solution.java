@@ -1,0 +1,18 @@
+
+public class Solution {
+
+    public int minOperations(int[] input, int target) {
+        int xorAllElementsInInput = 0;
+        for (int value : input) {
+            xorAllElementsInInput ^= value;
+        }
+
+        int minOperations = 0;
+        while (xorAllElementsInInput > 0 || target > 0) {
+            minOperations += (xorAllElementsInInput & 1) ^ (target & 1);
+            xorAllElementsInInput = (xorAllElementsInInput >> 1);
+            target = (target >> 1);
+        }
+        return minOperations;
+    }
+}
